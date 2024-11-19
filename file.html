@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Void IX | Elite Strategies</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- jQuery (needed for modal functionality) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Hover Effects */
+    .hover-grow {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .hover-grow:hover {
+      transform: scale(1.05);
+    }
+    .hover-color {
+      transition: color 0.3s ease;
+    }
+    .hover-color:hover {
+      color: #9b59b6;
+    }
+    .hover-bg {
+      transition: background-color 0.3s ease;
+    }
+    .hover-bg:hover {
+      background-color: #6c3483;
+    }
+    .hover-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .hover-icon:hover {
+      color: #9b59b6;
+      transform: scale(1.2);
+    }
+    /* Modal Styles */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      margin: 5% auto;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #000;
+      border-radius: 4px;
+    }
+    
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .close-video {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    /* Video Controls Styling */
+    .video-wrapper video::-webkit-media-controls {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .video-wrapper video::-webkit-media-controls-panel {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body class="font-cormorant bg-black text-gray-300">
+  </style>
+</head>
+<body class="font-cormorant bg-black text-gray-300">
+  </style>
+</head>
+<body class="font-cormorant bg-black text-gray-300">
+  
+  <!-- Header Section (Bootstrap) -->
+  <header class="bg-gradient-to-r from-gray-900 to-black sticky-top border-bottom border-gray-800">
+    <nav class="navbar navbar-expand-lg navbar-dark container">
+      <a class="navbar-brand font-cinzel text-white hover-color" href="#">VOID IX</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link text-white hover-color" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white hover-color" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white hover-color" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link text-white hover-color" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link text-white hover-color" href="#footer">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+ <!-- Hero Section (Tailwind CSS) -->
+ <section id="home" class="bg-gradient-to-r from-black via-gray-900 to-black text-white py-32">
+    <div class="container mx-auto text-center px-4">
+      <h1 class="text-5xl font-cinzel font-bold mb-6">Master the Hidden Path to Wealth</h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto font-cormorant">"In the void between chaos and order lies unlimited opportunity. Those who dare to explore it, rule the world." - Anonymous</p>
+      <button id="joinEliteBtn" class="bg-purple-700 text-white py-3 px-8 rounded-sm hover-grow hover-bg">Join the Elite</button>
+    </div>
+  </section>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="video-modal">
+    <div class="video-container">
+      <span class="close-video">&times;</span>
+      <div class="video-wrapper">
+        <video id="localVideo" controls>
+          <!-- Replace these source paths with your actual video file paths -->
+          <source src="C:\Users\caleb\Desktop\new ass\video.mp4" type="video.mp4">
+          <source src="path/to/your/video.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Features Section (Tailwind CSS) -->
+  <section id="features" class="bg-gray-900 py-24">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-cinzel font-bold text-center mb-16 text-white">Elite Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-black p-8 rounded-sm shadow-lg border border-gray-800 hover-grow">
+          <i class="fas fa-chart-line text-4xl text-purple-500 mb-4 hover-icon"></i>
+          <h3 class="text-2xl font-cinzel font-semibold mb-4 text-white">Shadow Markets</h3>
+          <ul class="space-y-2">
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Underground Opportunities</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Hidden Asset Classes</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Stealth Wealth Building</li>
+          </ul>
+        </div>
+        <div class="bg-black p-8 rounded-sm shadow-lg border border-gray-800 hover-grow">
+          <i class="fas fa-mask text-4xl text-purple-500 mb-4 hover-icon"></i>
+          <h3 class="text-2xl font-cinzel font-semibold mb-4 text-white">Phantom Protocol</h3>
+          <ul class="space-y-2">
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Invisible Income Streams</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Ghost Money Flow</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Private Transactions</li>
+          </ul>
+        </div>
+        <div class="bg-black p-8 rounded-sm shadow-lg border border-gray-800 hover-grow">
+          <i class="fas fa-brain text-4xl text-purple-500 mb-4 hover-icon"></i>
+          <h3 class="text-2xl font-cinzel font-semibold mb-4 text-white">Elite Mindset</h3>
+          <ul class="space-y-2">
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Psychological Warfare</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Strategic Thinking</li>
+            <li><i class="fas fa-check text-purple-500 mr-2"></i>Power Dynamics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section (Bootstrap Carousel) -->
+  <section id="testimonials" class="bg-gray-800 py-24">
+    <div class="container text-center">
+      <h2 class="text-4xl font-cinzel font-bold mb-16 text-white">Testimonials</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p class="text-lg italic text-white">"Void IX transformed my financial life! Their strategies are unparalleled."</p>
+            <h5 class="mt-4 text-white">- caleb M.</h5>
+          </div>
+          <div class="carousel-item">
+            <p class="text-lg italic text-white">"An incredible resource for wealth-building. Highly recommended."</p>
+            <h5 class="mt-4 text-white">- rubi L.</h5>
+          </div>
+          <div class="carousel-item">
+            <p class="text-lg italic text-white">"Their insights into shadow markets are game-changing."</p>
+            <h5 class="mt-4 text-white">- james R.</h5>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section (Tailwind CSS) -->
+  <footer id="footer" class="bg-gray-900 py-8">
+    <div class="container mx-auto text-center">
+      <p class="text-gray-500">&copy; 2024 Void IX. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="#" class="text-purple-500 mx-2 hover-icon"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="text-purple-500 mx-2 hover-icon"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="#" class="text-purple-500 mx-2 hover-icon"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" class="text-purple-500 mx-2 hover-icon"><i class="fab fa-linkedin fa-lg"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      const video = document.getElementById('localVideo');
+      
+      // Video Modal functionality
+      $("#joinEliteBtn").click(function() {
+        $("#videoModal").fadeIn();
+        video.play();
+      });
+
+      $(".close-video").click(function() {
+        $("#videoModal").fadeOut();
+        video.pause();
+        video.currentTime = 0;
+      });
+
+      $(window).click(function(e) {
+        if ($(e.target).is("#videoModal")) {
+          $("#videoModal").fadeOut();
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+
+      // Pause video when modal is hidden
+      $(video).on('ended', function() {
+        $("#videoModal").fadeOut();
+        video.currentTime = 0;
+      });
+    });
+  </script>
+
+  
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
