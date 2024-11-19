@@ -119,24 +119,51 @@
 </head>
 <body class="font-cormorant bg-black text-gray-300">
   
-  <!-- Header Section (Bootstrap) -->
-  <header class="bg-gradient-to-r from-gray-900 to-black sticky-top border-bottom border-gray-800">
-    <nav class="navbar navbar-expand-lg navbar-dark container">
-      <a class="navbar-brand font-cinzel text-white hover-color" href="#">VOID IX</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link text-white hover-color" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-white hover-color" href="#about">About Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white hover-color" href="#features">Features</a></li>
-          <li class="nav-item"><a class="nav-link text-white hover-color" href="#testimonials">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link text-white hover-color" href="#footer">Contact</a></li>
-        </ul>
+ <!-- Header Section with New Navigation -->
+<nav class="bg-black nav-shadow fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a class="font-cinzel text-white text-xl font-bold hover:text-gray-400 transition-colors" href="#">VOID IX</a>
       </div>
-    </nav>
-  </header>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#home" class="text-white hover:text-gray-400 transition-colors">Home</a>
+        <a href="#features" class="text-white hover:text-gray-400 transition-colors">Features</a>
+        <a href="#testimonials" class="text-white hover:text-gray-400 transition-colors">Testimonials</a>
+        <button id="desktopJoinBtn" class="bg-gradient-to-r from-gray-800 to-gray-600 px-4 py-2 rounded-lg hover:opacity-90 transition-opacity text-white font-bold">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button type="button" class="text-white hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" id="mobile-menu-button">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden pb-3 pt-2 transition-all duration-300 ease-in-out">
+    <div class="px-2 space-y-2 bg-gray-900 rounded-lg shadow-md mt-2 border border-gray-800">
+      <a href="#home" class="block text-white hover:bg-gray-700 px-3 py-2 rounded-md">Home</a>
+     
+      <a href="#features" class="block text-white hover:bg-gray-700 px-3 py-2 rounded-md">Features</a>
+      <a href="#testimonials" class="block text-white hover:bg-gray-700 px-3 py-2 rounded-md">Testimonials</a>
+      
+      <button id="mobileJoinBtn" class="w-full text-center bg-gradient-to-r from-gray-800 to-gray-600 px-4 py-2 rounded-lg hover:opacity-90 transition-opacity text-white font-bold">
+        Get Started
+      </button>
+    </div>
+  </div>
+</nav>
+
   
  <!-- Hero Section (Tailwind CSS) -->
  <section id="home" class="bg-gradient-to-r from-black via-gray-900 to-black text-white py-32">
@@ -245,16 +272,21 @@
 
   <script>
     $(document).ready(function() {
-      const video = document.getElementById('localVideo');
-      
-      // Video Modal functionality
-      $("#joinEliteBtn").click(function() {
-        $("#videoModal").fadeIn();
-        video.play();
+      // Mobile menu toggle
+      $('#mobile-menu-button').on('click', function() {
+        $('#mobile-menu').toggleClass('hidden');
       });
 
+      // Video modal functionality for both desktop and mobile buttons
+      $('#desktopJoinBtn, #mobileJoinBtn').on('click', function() {
+        $('#videoModal').fadeIn();
+        document.getElementById('localVideo').play();
+      });
+
+      // Close video modal functionality [remains the same]
       $(".close-video").click(function() {
         $("#videoModal").fadeOut();
+        const video = document.getElementById('localVideo');
         video.pause();
         video.currentTime = 0;
       });
@@ -262,19 +294,26 @@
       $(window).click(function(e) {
         if ($(e.target).is("#videoModal")) {
           $("#videoModal").fadeOut();
+          const video = document.getElementById('localVideo');
           video.pause();
           video.currentTime = 0;
         }
       });
 
-      // Pause video when modal is hidden
-      $(video).on('ended', function() {
-        $("#videoModal").fadeOut();
-        video.currentTime = 0;
+      // Smooth scrolling for navigation links
+      $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this.getAttribute('href'));
+        if(target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top - 64 // Adjusted for fixed header
+          }, 1000);
+          // Close mobile menu if open
+          $('#mobile-menu').addClass('hidden');
+        }
       });
     });
   </script>
-
   
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
